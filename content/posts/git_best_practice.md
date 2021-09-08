@@ -2,8 +2,6 @@
 title: "Git Best Practice"
 date: 2021-09-08T14:55:21+05:30
 Summary: "Their are serveral pratice like commit conventions, issues, pr, merge templates, branch naming conventions and mantaining changelogs"
-tags:
-    - git
 ---
 In any development using a git or source tracking is essential. But even though we will be using something like git it's not enough to keep our code or program in a well-mannered way. So that others can contribute to it. This is where certain practice comes into play. Like, writing good commit messages. There are several conventions that we follow to have a well mannered commit message.
 <br/>
@@ -203,3 +201,14 @@ If you want to make the same kind of feature in Github it's much simpler. Just d
 
 For example the issues will be looking like:
 https://github.com/evolvingkid/github_templates/issues/1
+
+
+## Branches
+
+Like, commit message convections we need to follow on naming branch in our project too. Think like if you are making a project then there will be a master branch and a release branch. The release branch will only contain code that is released after testing. Then there will be a dev branch where all your development goes on. It will be good if you do commit to the dev branch instead of committing to it. 
+
+ Like if you're doing feature work like accessing a camera. Then it will be good to make a branch name like feat-camera or if you are changing a style or refactor a code then use a prefix like style- or refactor-.
+
+ If you making a branch to fix an issue then it will be good to make the prefix as you issue id or number then followed by a short name of the issue. Like my project has an issue with accessing storage in ios and I have an opened issues with id 321. Then my branch name will be like 321-camera-ios. This will help us to know what issues we are working on. Like when you commit the code we can easily mention the issues id as #321 without looking through our issues list.
+
+This approach is also good if you have a developer who is in charge of code review where he will be the one to check your merge request and accept it to the dev branch. Also if your are in GitHub and using milestone to track your progress then it will easy for tester, project manager and devs to know the progress of our development.
