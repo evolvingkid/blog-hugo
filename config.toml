@@ -1,0 +1,19 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'evolvingkid, My little blog'
+theme = "blogtheme"
+
+
+[params]
+author= 'evolvingkid'
+bio = 'Associate Software Engineer'
+description = 'I small little blog.'
+
+[markup]
+    [highlight]
+    guessSyntax = 'true'
+    style = 'emacs'
+
+[social]
+github = 'https://github.com/evolvingkid'
+twitter = 'https://twitter.com/evolvingkid'
