@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Project Best Practice | evolvingkid, My little blog</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="Their are serveral pratice like commit conventions, issues, pr, merge templates, branch naming conventions and mantaining changelogs">
+<meta name="generator" content="Hugo 0.88.1" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">Project Best Practice</h1>
+
+    <div class="tip">
+        <time datetime="2021-09-08 14:55:21 &#43;0530 IST">Sep 8, 2021</time>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          1691 words
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          8 minute read
+        </span>
+    </div>
+
+    
+    
+
+
+    <div class="content">
+      <p>In most of the projects, we use Git or a version control tool to keep track of our development process. Even though we use a tool like Git, it&rsquo;s not enough to keep track of the project changes. If you look at projects where more than three people are contributing in a day, then the commit section will be messy. When you have more developers and every one of them is pushing their code to your project, how will you be able to know what kind of things are pending and which issues are fixed?</p>
+<p>This is where the commit convention comes in. It means that we are following some rules to name our commit messages. These rules will help us to maintain our commits message, and it will be much easier to understand for the whole team collaborating on the project. For example, imagine a commit message phrased as camera access added, contact access fixed on IOS. These messages fall short of conveying what has been done. On the first message, camera access added.  It doesn&rsquo;t tell if it is fully implemented or not also it is hard to know if it&rsquo;s a feature or not.</p>
+<p>We can solve these issues by using a commit convention. First of all, we need to have the rule to format our message. For this example, I will be going with a widely used format.</p>
+<blockquote>
+<p><strong>type</strong>: commit message in short. [description]</p>
+</blockquote>
+<p>In the above format, type means what kind of thing you achieved with the commit. Use a descriptive message like style change, issues fixed, implement a new feature. But instead of giving a full description, we will be using short words.
+For example, <code>feat: camera services add</code></p>
+<blockquote>
+<p>It will be good if you add a short description of what you did on the code in the body. Using a body is optional. For example, <code>git commit -m&quot;feat: camera services add&quot; -m&quot;maded a camera services to be used with any module&quot;</code>. The second <strong>m</strong> params contain body.</p>
+</blockquote>
+<p>We talked about commit convention and type. But we didn&rsquo;t discuss commonly used different types in commit messages. feat, fix, style, refactor, test, docs, chore are some commonly used ones.</p>
+<ul>
+<li>feat: This type is used if you are committing a code that is used to develop a feature. For example, implementing a camera is a part of the image capture of the user feature.</li>
+<li>fix: This type is used when your commit is used to fix issues.</li>
+<li>style: This is used when your commit code is deals with style updates</li>
+<li>refactor: This is used when your committed code deals with refactoring your code for better readability.</li>
+<li>doc: This is used when you have created or updated docs in your project. It can be a simple readme file or comments for better understanding. (But I highly recommend you to give comments when you are coding the feature).</li>
+<li>chore: This is used when changing something on your project for better maintainability of the project. Like splitting functions or making services or changing file structure.</li>
+</ul>
+<p>Even though we are using this convention we are not sure that everyone in our team will use it. Because these things can be easily forgotten if we are doing in a hurry. That is why need a tool to check that if we are following this rule or not.</p>
+<p>That&rsquo;s where <a href="https://commitlint.js.org/#/" target="_blank" rel="noopener">commitlint</a> comes into play. Just like other linting packages, it is used to set rules in our git commit message.</p>
+<p>To add commitlint to your project you need a <a href="https://nodejs.org/en/" target="_blank" rel="noopener">node</a>  and <a href="https://www.npmjs.com/package/npm" target="_blank" rel="noopener">npm</a> installed. Now run the command at the root of your project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># for linix and mac</span>
+npm install --save-dev @commitlint/<span style="color:#f92672">{</span>config-conventional,cli<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># for windows</span>
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+</code></pre></div><p>Now we need to craete a config file. Configuration of the commitlint is done in this file.<br>
+Create a file named <code>.commitlintrc.json</code> at the root of your project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;extends&#34;</span> : [<span style="color:#e6db74">&#34;@commitlint/config-conventional&#34;</span>]
+}
+</code></pre></div><p>If you want to know more about above rule we used. <a href="https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional" target="_blank" rel="noopener">https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional</a></p>
+<p>But the only thing is commitlint will not automatically work when you commit a change in your project. How it to work we need another tool named husky. Husky is a git hook that runs when you run git commands.</p>
+<p>To install husky</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install husky --save-dev
+
+<span style="color:#75715e"># install husky it will create .husky folder</span>
+npx husky install
+</code></pre></div><p>Now add commitlint to husky when we give commit messsage.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npx husky add .husky/commit-msg <span style="color:#e6db74">&#34;npx commitlint --edit </span>$1<span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>Now when ever you commit a change then this command will work and throw out error if your don&rsquo;t follow commit convention.</p>
+<p>Now to try committing the changes</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git commit -m<span style="color:#e6db74">&#34;feat: commitlint add&#34;</span> -m<span style="color:#e6db74">&#34;Added new commit convention&#34;</span>
+</code></pre></div><h2 id="changelog">Changelog <a href="#changelog" class="anchor">🔗</a></h2><p>We talk about commit convention but it&rsquo;s not enough to maintain the project. Think like this when you&rsquo;re doing a project you will have so many kinds of version releases like 1.01, 1.02. In this case, how will you know what all feature is implemented and what all fixes are done?</p>
+<p>This is where changelog comes into play. You can use changelog to create version logs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i --save-dev standard-version
+</code></pre></div><p>Now you need to add a script you can</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">
+{
+  <span style="color:#f92672">&#34;scripts&#34;</span>: {
+    <span style="color:#f92672">&#34;release&#34;</span>: <span style="color:#e6db74">&#34;standard-version&#34;</span>
+  }
+}
+</code></pre></div><p>Now run the script to make a changelog</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rpm run release
+</code></pre></div><p>For example, <a href="https://gitlab.com/evolvingkid/testing-react-native/-/blob/test/CHANGELOG.md" target="_blank" rel="noopener">https://gitlab.com/evolvingkid/testing-react-native/-/blob/test/CHANGELOG.md</a></p>
+<h2 id="merge-request">Merge Request <a href="#merge-request" class="anchor">🔗</a></h2><p>We talk about commit messages and changelog. Like this, we even have templates for merge requests. It is used because like commit messages people will write unwanted or not well-mannered descriptions in merge requests or pull requests. That is why we need to set a rule or template that enforce contributors to follow a well-mannered description in our merge request or pull request.</p>
+<p>To make a template we need to create a dir as <code>.gitlab/merge_request_templates</code> in our root dir.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">
+# Description
+
+Please include a summary of the changes and issues that are fixed.
+
+# Dependencies
+
+please note down the dependencies that use in this code change.
+
+For example 
+<span style="color:#66d9ef">*</span> react-native : 1.02
+
+# Native Dependencies
+
+please note down the native dependencies that use in this code change. Which can have issues with code push
+
+For example 
+<span style="color:#66d9ef">*</span> react-native : 1.02
+
+# checklist
+
+<span style="color:#66d9ef">- [ ]</span> used convection commits
+
+</code></pre></div><p>This template was designed for a react native project in mind. That is why I added dependencies. Your merge request needed to be descriptive. You can use different types of merge requests according to your need.</p>
+<p>Now you can find the template in the merge request. Example : <a href="https://gitlab.com/evolvingkid/testing-react-native/-/blob/master/.gitlab/merge_request_templates/merge_request_default.md" target="_blank" rel="noopener">https://gitlab.com/evolvingkid/testing-react-native/-/blob/master/.gitlab/merge_request_templates/merge_request_default.md</a></p>
+<p>Merge request will look like : <a href="https://gitlab.com/evolvingkid/testing-react-native/-/merge_requests/1" target="_blank" rel="noopener">https://gitlab.com/evolvingkid/testing-react-native/-/merge_requests/1</a></p>
+<p>In the case of GitHub, If you want to make a pull request like a merge request you need to create a file on <code>.github/pull_request.md </code>. Now need to add the same MD file like on merge request file.</p>
+<p>Like example : <a href="https://github.com/evolvingkid/github_templates/blob/main/.github/pull_request_template.md" target="_blank" rel="noopener">https://github.com/evolvingkid/github_templates/blob/main/.github/pull_request_template.md</a></p>
+<p>Merge request will look like: <a href="https://github.com/evolvingkid/github_templates/pull/2" target="_blank" rel="noopener">https://github.com/evolvingkid/github_templates/pull/2</a></p>
+<h2 id="issues">Issues <a href="#issues" class="anchor">🔗</a></h2><p>When you are doing a project with two more contributors it will be hard to maintain issues and features. That is why we use issues templates like merge templates. In the issues template, we can create multiple issues like a feature request for implementing new features or create issues for mobile, web, or server as you want.</p>
+<p>To create issues templates create file as <code>.gitlab/issue_templates/bug_report.md</code></p>
+<p>Then fill the code below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">
+# name
+
+Keep it brief and use correct terms
+
+# Description
+
+Give a brief description of how the bug occurred.
+
+# Environment
+
+Tell us about what env used like qa, dev, prod
+
+# device
+
+Tell us about the device used to check like web, android, ios
+
+# logs
+
+If there are any logs, paste them.
+
+# Steps to reproduce
+
+steps to reproduce the issues
+
+# Expected
+
+Please explain the expected output
+
+# Actual
+
+Please explain the actual output
+</code></pre></div><p>This will create a template for your issues.</p>
+<p>Example: <a href="https://gitlab.com/evolvingkid/testing-react-native/-/blob/master/.gitlab/issue_templates/bug_report.md" target="_blank" rel="noopener">https://gitlab.com/evolvingkid/testing-react-native/-/blob/master/.gitlab/issue_templates/bug_report.md</a></p>
+<p>This issues will look like : <a href="https://gitlab.com/evolvingkid/testing-react-native/-/issues/1" target="_blank" rel="noopener">https://gitlab.com/evolvingkid/testing-react-native/-/issues/1</a></p>
+<p>If you want to make the same kind of feature in Github it’s much simpler. Just do the <strong>project settings</strong> then scroll down. You will see the <strong>issues checkbox</strong> and you will see the setup template option just below. Click that button now you will see options to choose different types of templates. You can choose a built-in template or a custom one. The custom one is the same as the GitLab MD file</p>
+<p>For example the issues will be looking like: <a href="https://github.com/evolvingkid/github_templates/issues/1" target="_blank" rel="noopener">https://github.com/evolvingkid/github_templates/issues/1</a></p>
+<h2 id="branches">Branches <a href="#branches" class="anchor">🔗</a></h2><p>Like, commit message convections we need to follow on naming branch in our project too. If you are making a project then there will be a <strong>master</strong> branch and a <strong>release</strong> branch. The release branch will only contain code that is released after testing. Then there will be a dev branch where all your development goes on. It will be good if you do commit to the dev branch instead of committing to it.</p>
+<p>If you’re doing feature work like accessing a camera. Then it will be good to make a branch name like <strong>feat-camera</strong> or if you are changing a style or refactor a code then use a prefix like <strong>style-</strong> or <strong>refactor-</strong>.</p>
+<p>If you making a branch to fix an issue then it will be good to make the prefix as you issue id or number then followed by a short name of the issue. Like my project has an issue with accessing storage in ios and I have an opened issues with ID <strong>321</strong>. Then my branch name will be like <code>321-camera-ios</code>. This will help us to know what issues we are working on. Like when you commit the code we can easily mention the issues ID as <strong>#321</strong> without looking through our issues list.</p>
+<p>This approach is also good if you have a developer who is in charge of code review where he will be the one to check your merge request and accept it to the dev branch. Also if your are in GitHub and using milestone to track your progress then it will easy for tester, project manager and devs to know the progress of our development.</p>
+<p>Commitlint, brach naming, issues and merge templates are used to make your project works more organized. It&rsquo;s not mandatory that you must use these things. But it will be good to be well maintain your project.</p>
+
+    </div>
+
+    
+    
+    
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+        <div id="social">
+
+
+    <a class="symbol" href="https://github.com/evolvingkid" rel="me" target="_blank">
+        
+        <svg fill="#bbbbbb" width="28" height="28"  viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>Github</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Social-Icons---Rounded-Black" transform="translate(-264.000000, -939.000000)">
+            <g id="Github" transform="translate(264.000000, 939.000000)">
+                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
+                <path d="M35.9985,13 C22.746,13 12,23.7870921 12,37.096644 C12,47.7406712 18.876,56.7718301 28.4145,59.9584121 C29.6145,60.1797862 30.0525,59.4358488 30.0525,58.7973276 C30.0525,58.2250681 30.0315,56.7100863 30.0195,54.6996482 C23.343,56.1558981 21.9345,51.4693938 21.9345,51.4693938 C20.844,48.6864054 19.2705,47.9454799 19.2705,47.9454799 C17.091,46.4500754 19.4355,46.4801943 19.4355,46.4801943 C21.843,46.6503662 23.1105,48.9634994 23.1105,48.9634994 C25.2525,52.6455377 28.728,51.5823398 30.096,50.9649018 C30.3135,49.4077535 30.9345,48.3460615 31.62,47.7436831 C26.2905,47.1352808 20.688,45.0691228 20.688,35.8361671 C20.688,33.2052792 21.6225,31.0547881 23.1585,29.3696344 C22.911,28.7597262 22.0875,26.3110578 23.3925,22.9934585 C23.3925,22.9934585 25.4085,22.3459017 29.9925,25.4632101 C31.908,24.9285993 33.96,24.6620468 36.0015,24.6515052 C38.04,24.6620468 40.0935,24.9285993 42.0105,25.4632101 C46.5915,22.3459017 48.603,22.9934585 48.603,22.9934585 C49.9125,26.3110578 49.089,28.7597262 48.8415,29.3696344 C50.3805,31.0547881 51.309,33.2052792 51.309,35.8361671 C51.309,45.0917119 45.6975,47.1292571 40.3515,47.7256117 C41.2125,48.4695491 41.9805,49.9393525 41.9805,52.1877301 C41.9805,55.4089489 41.9505,58.0067059 41.9505,58.7973276 C41.9505,59.4418726 42.3825,60.1918338 43.6005,59.9554002 C53.13,56.7627944 60,47.7376593 60,37.096644 C60,23.7870921 49.254,13 35.9985,13" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+    </a>
+
+    <a class="symbol" href="https://twitter.com/evolvingkid" rel="me" target="_blank">
+        
+        <svg fill="#bbbbbb" width="28" height="28" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="438.536px" height="438.536px" viewBox="0 0 438.536 438.536" style="enable-background:new 0 0 438.536 438.536;"
+	 xml:space="preserve">
+<g>
+	<path d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
+		C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126
+		h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225
+		C438.532,59.576,430.49,40.204,414.41,24.123z M335.471,168.735c0.191,1.713,0.288,4.278,0.288,7.71
+		c0,15.989-2.334,32.025-6.995,48.104c-4.661,16.087-11.8,31.504-21.416,46.254c-9.606,14.749-21.074,27.791-34.396,39.115
+		c-13.325,11.32-29.311,20.365-47.968,27.117c-18.648,6.762-38.637,10.143-59.953,10.143c-33.116,0-63.76-8.952-91.931-26.836
+		c4.568,0.568,9.329,0.855,14.275,0.855c27.6,0,52.439-8.565,74.519-25.7c-12.941-0.185-24.506-4.179-34.688-11.991
+		c-10.185-7.803-17.273-17.699-21.271-29.691c4.947,0.76,8.658,1.137,11.132,1.137c4.187,0,9.042-0.76,14.56-2.279
+		c-13.894-2.669-25.598-9.562-35.115-20.697c-9.519-11.136-14.277-23.84-14.277-38.114v-0.571
+		c10.085,4.755,19.602,7.229,28.549,7.422c-17.321-11.613-25.981-28.265-25.981-49.963c0-10.66,2.758-20.747,8.278-30.264
+		c15.035,18.464,33.311,33.213,54.816,44.252c21.507,11.038,44.54,17.227,69.092,18.558c-0.95-3.616-1.427-8.186-1.427-13.704
+		c0-16.562,5.853-30.692,17.56-42.399c11.703-11.706,25.837-17.561,42.394-17.561c17.515,0,32.079,6.283,43.688,18.846
+		c13.134-2.474,25.892-7.33,38.26-14.56c-4.757,14.652-13.613,25.788-26.55,33.402c12.368-1.716,23.88-4.95,34.537-9.708
+		C357.458,149.793,347.462,160.166,335.471,168.735z"/>
+</g>
+</svg>
+
+    </a>
+
+
+</div>
+
+    
+
+    <div class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       evolvingkid
+    
+    </div>
+
+    
+      <div class="powerby">
+        Powered by <a href='http://www.gohugo.io/'>Hugo</a> Theme By <a href='https://github.com/nodejh/hugo-theme-cactus-plus'>nodejh</a>
+      </div>
+    
+</footer>
+
+
+
+  </body>
+</html>

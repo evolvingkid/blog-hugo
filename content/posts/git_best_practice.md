@@ -1,91 +1,90 @@
 ---
-title: "Git Best Practice"
+title: "Project Best Practice"
 date: 2021-09-08T14:55:21+05:30
 Summary: "Their are serveral pratice like commit conventions, issues, pr, merge templates, branch naming conventions and mantaining changelogs"
 ---
-In any development using a git or source tracking is essential. But even though we will be using something like git it's not enough to keep our code or program in a well-mannered way. So that others can contribute to it. This is where certain practice comes into play. Like, writing good commit messages. There are several conventions that we follow to have a well mannered commit message.
-<br/>
-For example :
-```  type: commit-msg ```
+In most of the projects, we use Git or a version control tool to keep track of our development process. Even though we use a tool like Git, it's not enough to keep track of the project changes. If you look at projects where more than three people are contributing in a day, then the commit section will be messy. When you have more developers and every one of them is pushing their code to your project, how will you be able to know what kind of things are pending and which issues are fixed? 
 
-## Commit Message
-The type means what kind of scope this code change we did. Some usual types we use are feat, fix, style, refactor, test, docs, chore. 
+This is where the commit convention comes in. It means that we are following some rules to name our commit messages. These rules will help us to maintain our commits message, and it will be much easier to understand for the whole team collaborating on the project. For example, imagine a commit message phrased as camera access added, contact access fixed on IOS. These messages fall short of conveying what has been done. On the first message, camera access added.  It doesn't tell if it is fully implemented or not also it is hard to know if it's a feature or not.  
 
-* fix: means something related to fixing
-* feat: means something related to a feature we are working on.
-* style: means something related to the styling of the app.
-* refactor: means something related to refactoring of the code
-* test: means something related to testing of the project.
-* docs: means something related to documentation on the project.
-* chore: means something related to code maintainability.
+We can solve these issues by using a commit convention. First of all, we need to have the rule to format our message. For this example, I will be going with a widely used format.  
+> **type**: commit message in short. [description]
 
-In a team project maintaining this standard is hard. That's why we can use tools like commitlint to set up rules in our commit.
+In the above format, type means what kind of thing you achieved with the commit. Use a descriptive message like style change, issues fixed, implement a new feature. But instead of giving a full description, we will be using short words. 
+For example, `feat: camera services add`
 
-To install and setup the tool.  
-<br />
-Install commitlint (This is for Linux and mac)  
+
+> It will be good if you add a short description of what you did on the code in the body. Using a body is optional. For example, `git commit -m"feat: camera services add" -m"maded a camera services to be used with any module"`. The second **m** params contain body.  
+
+
+We talked about commit convention and type. But we didn't discuss commonly used different types in commit messages. feat, fix, style, refactor, test, docs, chore are some commonly used ones.  
+
+* feat: This type is used if you are committing a code that is used to develop a feature. For example, implementing a camera is a part of the image capture of the user feature.
+* fix: This type is used when your commit is used to fix issues.
+* style: This is used when your commit code is deals with style updates
+* refactor: This is used when your committed code deals with refactoring your code for better readability.
+* doc: This is used when you have created or updated docs in your project. It can be a simple readme file or comments for better understanding. (But I highly recommend you to give comments when you are coding the feature).
+* chore: This is used when changing something on your project for better maintainability of the project. Like splitting functions or making services or changing file structure.
+
+
+Even though we are using this convention we are not sure that everyone in our team will use it. Because these things can be easily forgotten if we are doing in a hurry. That is why need a tool to check that if we are following this rule or not.
+
+That's where [commitlint](https://commitlint.js.org/#/) comes into play. Just like other linting packages, it is used to set rules in our git commit message.
+
+To add commitlint to your project you need a [node](https://nodejs.org/en/)  and [npm](https://www.npmjs.com/package/npm) installed. Now run the command at the root of your project.
+
 ```bash
-npm install --save-dev @commitlint/{config-conventional,cli} 
-```  
-If you are using windows: x
-```bash
- npm install --save-dev @commitlint/cli @commitlint/config-conventional
+# for linix and mac
+npm install --save-dev @commitlint/{config-conventional,cli}
+
+# for windows
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
 ```
-Now create a `.commitlintrc.json` on our project home dir to define our rules.  
-now add this line to the `.commitlintrc.json` file  
+Now we need to craete a config file. Configuration of the commitlint is done in this file.  
+Create a file named `.commitlintrc.json` at the root of your project.
+
 ```json
 {
     "extends" : ["@commitlint/config-conventional"]
 }
 ```
-This will give us basic commit rules.  
-Now install husk.  
+If you want to know more about above rule we used. https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional
+
+But the only thing is commitlint will not automatically work when you commit a change in your project. How it to work we need another tool named husky. Husky is a git hook that runs when you run git commands.  
+
+To install husky  
 ```bash
 npm install husky --save-dev
-```
-Now add a script in your `package.json` file
-```json
- "scripts": {
-    "postinstall": "husky install"
-  },
-```
 
-> You dont need this the above step you can skip it
-
-now run command  
-```bash
+# install husky it will create .husky folder
 npx husky install
 ```
-now run command  
+Now add commitlint to husky when we give commit messsage.
 ```bash
 npx husky add .husky/commit-msg "npx commitlint --edit $1"
 ```
-After these try to commit like
+Now when ever you commit a change then this command will work and throw out error if your don't follow commit convention.
+
+Now to try committing the changes
+
 ```bash
- git commit -m "this is my 1st commit"
+git commit -m"feat: commitlint add" -m"Added new commit convention"
 ```
 
-This will surely fail. After the rule is setup you need to follow the commit convention like `type: msg`. For example  
-```bash
-git commit -m "feat: initial project setup" -m "The project is set up to do collaborative work with our teammates"
-```
+## Changelog
 
-After following good commit convection. It will be easy to know which commits means what like which commit is done for a fix, implement a new feature, or refactoring of your code. 
+We talk about commit convention but it's not enough to maintain the project. Think like this when you're doing a project you will have so many kinds of version releases like 1.01, 1.02. In this case, how will you know what all feature is implemented and what all fixes are done?  
 
-Having a good commit message is good but think like If your app has a ton of release versions then how you are going to know what kind of things you implement on those releases. This is where changelog comes in.
-
-## changelog
-
-In every project maintaining the changelog file is also important. So that newer and other devs can see that all are done and fixed in a version release.
-For this purpose, we will use another npm package called standard-version.
+This is where changelog comes into play. You can use changelog to create version logs.
 
 ```bash
 npm i --save-dev standard-version
 ```
 
-Now add script
+Now you need to add a script you can
 
 ```json
+
 {
   "scripts": {
     "release": "standard-version"
@@ -93,26 +92,23 @@ Now add script
 }
 ```
 
-now run the script 
-
+Now run the script to make a changelog
 
 ```bash
 rpm run release
 ```
 
-Now as for a demo how the changelog file look like 
-https://gitlab.com/evolvingkid/testing-react-native/-/blob/test/CHANGELOG.md
-
-Doing npm release manually is not that good. It will be better you connect an action (CI/CD) that triggers when you push to the master branch or a tag is pushed.
+For example, https://gitlab.com/evolvingkid/testing-react-native/-/blob/test/CHANGELOG.md
 
 ## Merge Request
-Like the commit message in the merge request, we must have a well-defined description. For this, we can make templates. In GitLab, all the templates are store in `.gitlab/ `    dir.
 
-We can make a md file like default_merge_request.md and fill this code.
+We talk about commit messages and changelog. Like this, we even have templates for merge requests. It is used because like commit messages people will write unwanted or not well-mannered descriptions in merge requests or pull requests. That is why we need to set a rule or template that enforce contributors to follow a well-mannered description in our merge request or pull request.
 
-I made this merge request template for react native project. You can create the template based on what you want to reflect. When you are doing a merge request template it must be descriptive of what you did in the code. It will be better to add a checklist if you need your companion to check some kind of rule or anything before committing the code.
+To make a template we need to create a dir as `.gitlab/merge_request_templates` in our root dir.
+
 
 ```md
+
 # Description
 
 Please include a summary of the changes and issues that are fixed.
@@ -134,30 +130,30 @@ For example
 # checklist
 
 - [ ] used convection commits
+
 ```
+This template was designed for a react native project in mind. That is why I added dependencies. Your merge request needed to be descriptive. You can use different types of merge requests according to your need. 
 
 Now you can find the template in the merge request. Example : https://gitlab.com/evolvingkid/testing-react-native/-/blob/master/.gitlab/merge_request_templates/merge_request_default.md
 
 Merge request will look like : https://gitlab.com/evolvingkid/testing-react-native/-/merge_requests/1
 
+In the case of GitHub, If you want to make a pull request like a merge request you need to create a file on `.github/pull_request.md `. Now need to add the same MD file like on merge request file.  
 
-Now in the same case if you want to make a pull request template on Github. It's kind of similar. You can create a `.github/pull_request.md` file in your project then add the above md file. 
+Like example : https://github.com/evolvingkid/github_templates/blob/main/.github/pull_request_template.md  
 
-Like example : https://github.com/evolvingkid/github_templates/blob/main/.github/pull_request_template.md
+Merge request will look like: https://github.com/evolvingkid/github_templates/pull/2  
 
-Merge request will look like:
-https://github.com/evolvingkid/github_templates/pull/2
+## Issues  
 
-## Issues
+When you are doing a project with two more contributors it will be hard to maintain issues and features. That is why we use issues templates like merge templates. In the issues template, we can create multiple issues like a feature request for implementing new features or create issues for mobile, web, or server as you want.  
 
-When you are doing a project with more than 2 people. You need a way to track all the bugs, feature requests, or issues of your project. So for these kinds of different types of issues, it's easy to make a template for each of these use cases. Like, merge request issues must be descriptive.
+To create issues templates create file as `.gitlab/issue_templates/bug_report.md`  
 
-
-Like the merge request template, issues description can also have a template. Create a file name `.gitlab/issue_templates/bug_report.md`. 
-
-Then fill the code below.
+Then fill the code below.  
 
 ```md
+
 # name
 
 Keep it brief and use correct terms
@@ -191,24 +187,24 @@ Please explain the expected output
 Please explain the actual output
 ```
 
-This will create a template for your issues.
+This will create a template for your issues.  
 
-Example: https://gitlab.com/evolvingkid/testing-react-native/-/blob/master/.gitlab/issue_templates/bug_report.md
+Example: https://gitlab.com/evolvingkid/testing-react-native/-/blob/master/.gitlab/issue_templates/bug_report.md  
 
-This issues will look like : https://gitlab.com/evolvingkid/testing-react-native/-/issues/1
+This issues will look like : https://gitlab.com/evolvingkid/testing-react-native/-/issues/1  
 
-If you want to make the same kind of feature in Github it's much simpler. Just do the project settings then scroll down. You will see the issues checkbox and you will see the setup template option just below. Click that button now you will see options to choose different types of templates. You can choose a built-in template or a custom one. The custom one is the same as the GitLab MD file 
+If you want to make the same kind of feature in Github it’s much simpler. Just do the **project settings** then scroll down. You will see the **issues checkbox** and you will see the setup template option just below. Click that button now you will see options to choose different types of templates. You can choose a built-in template or a custom one. The custom one is the same as the GitLab MD file
 
-For example the issues will be looking like:
-https://github.com/evolvingkid/github_templates/issues/1
-
+For example the issues will be looking like: https://github.com/evolvingkid/github_templates/issues/1
 
 ## Branches
 
-Like, commit message convections we need to follow on naming branch in our project too. Think like if you are making a project then there will be a master branch and a release branch. The release branch will only contain code that is released after testing. Then there will be a dev branch where all your development goes on. It will be good if you do commit to the dev branch instead of committing to it. 
+Like, commit message convections we need to follow on naming branch in our project too. If you are making a project then there will be a **master** branch and a **release** branch. The release branch will only contain code that is released after testing. Then there will be a dev branch where all your development goes on. It will be good if you do commit to the dev branch instead of committing to it.  
 
- Like if you're doing feature work like accessing a camera. Then it will be good to make a branch name like feat-camera or if you are changing a style or refactor a code then use a prefix like style- or refactor-.
+If you’re doing feature work like accessing a camera. Then it will be good to make a branch name like **feat-camera** or if you are changing a style or refactor a code then use a prefix like **style-** or **refactor-**.  
 
- If you making a branch to fix an issue then it will be good to make the prefix as you issue id or number then followed by a short name of the issue. Like my project has an issue with accessing storage in ios and I have an opened issues with id 321. Then my branch name will be like 321-camera-ios. This will help us to know what issues we are working on. Like when you commit the code we can easily mention the issues id as #321 without looking through our issues list.
+If you making a branch to fix an issue then it will be good to make the prefix as you issue id or number then followed by a short name of the issue. Like my project has an issue with accessing storage in ios and I have an opened issues with ID **321**. Then my branch name will be like `321-camera-ios`. This will help us to know what issues we are working on. Like when you commit the code we can easily mention the issues ID as **#321** without looking through our issues list.  
 
-This approach is also good if you have a developer who is in charge of code review where he will be the one to check your merge request and accept it to the dev branch. Also if your are in GitHub and using milestone to track your progress then it will easy for tester, project manager and devs to know the progress of our development.
+This approach is also good if you have a developer who is in charge of code review where he will be the one to check your merge request and accept it to the dev branch. Also if your are in GitHub and using milestone to track your progress then it will easy for tester, project manager and devs to know the progress of our development.  
+
+Commitlint, brach naming, issues and merge templates are used to make your project works more organized. It's not mandatory that you must use these things. But it will be good to be well maintain your project. 
