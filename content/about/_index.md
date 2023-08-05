@@ -7,11 +7,13 @@ author = "evolvingkid"
 enableComments = false
 +++
 
-I'm a passionate engineer. In the beginning, I was into the flutter framework but then I realized that sticking with a framework is not a good thing. If you are a developer or an engineer then you must always need to do any kind of development process. 
+I was in the journey of acquiring the knowledge how to build a good product from an engineering standpoint and test it.  
 
-You must know how things work and try to improve those processes.
+In [Tortoise](https://play.google.com/store/apps/details?id=com.tortoisehq.tortoise&hl=en_US&gl=US) which is a product-based startup, we are a team of 8 people of which 4 of them are engineers. Working closely with the founding team, we are building product in varies platform like web dashboard, React native app, custom payment for our whatsapp flow. Like any other product startup, we pivoted in multiple market as building our own wallet system as SASS. Currently, we are building a new product named Proconut.
 
-So from this blog, I am trying to share knowledge that I gain.
+I was a freelance developer for 3 years in my college days. After that I joined [neoito](https://www.neoito.com/) a service based-company as an associate software engineer. Then I moved to Tortoise as a software engineer. 
+
+Here, I am trying to share knowledge that I gain.
 
 ## Website
 
