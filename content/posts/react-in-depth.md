@@ -2,7 +2,6 @@
 title: "React in Depth"
 date: 2021-09-15T23:39:10+05:30
 Summary: "Simple explaination about react working"
-draft: true
 ---
 
 At some point in time, we may hear about virtual dom, fiber, Reconciliation algorithm in react. But ever think about how this thinks works in react and why they used these things. If you did a website with HTML, CSS, and js we may have to use the 'document.innerHTML code like this. So why don't react can use this code instead of this crazy algorithm?

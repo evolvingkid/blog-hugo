@@ -2,7 +2,6 @@
 title: "React Native Web"
 Summary: "Configuring react native web on an existing react native project. (The proper way)"
 date: 2023-08-05T16:56:09+05:30
-draft: true
 ---
 
 Currently, most companies are choosing a hybrid system for their app and web development. The common framework that people go for is either flutter or react. Unlike Flutter which has a single code base for both web IOS and Android. React has 2 different for web and mobile devices. Some said it is good as Flutter because anyone who knows React can start to code in React Native which is more or less correct. But it doesn't solve the basic issues where you need to code for two different devices.
