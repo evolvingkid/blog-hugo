@@ -1,13 +1,12 @@
-baseURL = 'http://example.org/'
+baseURL = '/'
 languageCode = 'en-us'
 title = 'evolvingkid, My little blog'
-theme = "blogtheme"
+theme = "mini"
 
 
 [params]
 author= 'evolvingkid'
-bio = 'Associate Software Engineer'
-description = 'I small little blog.'
+bio = 'Software Engineer at Tortoise'
 
 [markup]
     [highlight]

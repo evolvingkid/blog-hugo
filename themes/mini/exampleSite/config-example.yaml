@@ -1,8 +1,11 @@
 baseURL: https://nodejh.github.io/hugo-theme-mini
 languageCode: en-us
 title: Hugo
-theme: "mini"
+theme: hugo-theme-mini
 paginate: 3
+
+# !!! exampleSite only, you may need to delete the line: `themesDir: ../../` 
+themesDir: ../../
 
 hasCJKLanguage: true
 permalinks:
