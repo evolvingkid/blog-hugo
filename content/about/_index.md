@@ -7,13 +7,15 @@ author = "evolvingkid"
 enableComments = false
 +++
 
-I was in the journey of acquiring the knowledge how to build a good product from an engineering standpoint and test it.  
+I'm a product-focused software engineer with a strong interest in building and testing great products from an engineering perspective.
 
-In [Tortoise](https://www.linkedin.com/company/tortoisepro/) which is a product-based startup, we are a team of 8 people of which 4 of them are engineers. Working closely with the founding team, we are building product in various platform like web dashboard, React native app, custom payment for our whatsapp flow. Like any other product startup, we pivoted in multiple market as building our own wallet system as SASS. Currently, we are building a new product named Proconut.
+Currently, I'm working at [Grapevine](https://www.grapevine.in/home), where we're building a social media platform tailored for working professionals. I'm part of the team developing our newest product, Round 1 AI, an interview preparation tool designed to help candidates practice and land jobs at top companies.
 
-I was a freelance developer for 3 years in my college days. After that I joined [neoito](https://www.neoito.com/) a service based-company as an associate software engineer. Then I moved to Tortoise as a software engineer. 
+Previously, I worked at [Tortoise](https://tortoise.pro/), a product-based startup with a compact team of 8, including 4 engineers. I collaborated closely with the founding team to build products across multiple platforms — including web dashboards, a React Native app, and custom payment flows for WhatsApp. Like many startups, we experimented across various markets, including building our own SaaS-based wallet system. During my time there, we launched and iterated on several products, including our latest, Proconut.
 
-Here, I am trying to share knowledge that I gain.
+Before Tortoise, I started my professional journey as a freelance developer during college, working independently for 3 years. I then joined Neoito, a service-based company, as an Associate Software Engineer, where I honed my skills working on client-facing projects.
+
+Through all of these experiences, my goal has been to understand what it takes to build meaningful, user-centric products — and to share the knowledge I gain along the way.
 
 ## Website
 
