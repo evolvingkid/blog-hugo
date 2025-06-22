@@ -58,13 +58,13 @@ When rendering, each slice simply refers to the centralized post data by calling
 
 As you can see, we now maintain a dedicated object for each filter — such as Recent, Popular, and others — within their respective slices. Each of these objects holds only the list of relevant `postIds`, making the structure cleaner, easier to manage, and more predictable across screens.
 
-### Easy to sync
+### 2. Easy to sync
 
 Now that post data is centralized, updating any post is as simple as modifying the `postSlice` — and the change is instantly reflected across the entire app. This eliminates the need to manually sync state in multiple places.
 
 Updating a post has also become much more efficient. Instead of iterating through multiple post lists, we can now directly access and update the post using its `postId`, making our state updates both faster and more reliable.
 
-### Caching the post
+### 3. Caching the post
 
 Since we now cache post data centrally, any updates received from API responses are reflected immediately across the app. This allows us to reuse the same post data for the Post Detail screen, eliminating the need to block the UI while fetching fresh data.
 
