@@ -5,7 +5,7 @@ draft: False
 Summary: "In this post, we dive into how we designed Grapevine’s post data structure to be modular, performant, and future-proof. From supporting diverse content types to enabling rapid iteration, here’s how we built a content architecture that scales with our platform."
 ---
 
-> you may not want to read the 1st para since it's just me festered toward JS Frontend community 😂
+> you may not want to read the 1st para since it's just me frustrated toward JS Frontend community 😂
 
 As many of you know, Grapevine uses React Native for our mobile application. When you look around the JavaScript community, you’ll often see developers releasing new state management libraries — many of which are just sugar-coated versions of existing ones. What’s rarely discussed, however, is how to effectively structure and handle the variety of data types that client applications deal with every day. Instead, the focus tends to be on plugging in the latest package and injecting backend data directly into the UI — and calling it a day.
 
