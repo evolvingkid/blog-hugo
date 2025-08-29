@@ -1,7 +1,6 @@
 ---
 title: "Apple Payment - (Store-kit 2)"
 date: "2025-08-29"
-draft: true
 Summary: "In this post, we explore how to implement Apple’s StoreKit 2 in the backend—covering purchase verification, subscription management, and real-time notifications for a secure, scalable payment infrastructure."
 ---
 
